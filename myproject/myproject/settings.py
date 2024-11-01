@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+CRFS_TRUSTED_ORIGINS = ['https://' + 'tcheorienta-bda2c9f4bycxb8du.brazilsouth-01.azurewebsites.net']
 
 
 # Application definition
@@ -59,6 +61,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
