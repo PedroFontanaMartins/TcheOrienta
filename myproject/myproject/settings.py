@@ -24,9 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t($t)q3hg3!5x2kh^3h)q0!b3d@$)z82kdar*cc6=sawer*u3&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'tcheorienta-bda2c9f4bycxb8du.brazilsouth-01.azurewebsites.net', 
+    'localhost', 
+    '127.0.0.1'
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Application definition
@@ -79,6 +84,25 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'error.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
